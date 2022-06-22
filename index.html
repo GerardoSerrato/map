@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet"> 
+  <link rel="stylesheet" href="style.css">
+  <title>Mapa interactivo</title>
+</head>
+<body>
+  <div class="container">
+    <div class="sideSection">
+      <div class="selectionSection">
+        <div class="selectionGroup">
+          <h2 class="selectionGroupTitle">LUNES</h2>
+          <div class="selectionOptionContainer">
+            <div class="selectionGroupOption">
+              <input class="btn-switch" type="checkbox" id="lunesManuel" value="lunesManuel" onclick="cambiarColor(this.value)">
+              <label for="lunesManuel" class="fst-child button">ISAAC</label>
+            </div>
+            <div class="selectionGroupOption">
+              <input class="btn-switch" type="checkbox" id="lunesIsaac" value="lunesIsaac" onclick="cambiarColor(this.value)">
+              <label for="lunesIsaac" class="button">MANUEL</label>
+            </div>
+            <div class="selectionGroupOption">
+              <input class="btn-switch" type="checkbox" id="lunesSergio" value="lunesSergio" onclick="cambiarColor(this.value)">
+              <label for="lunesSergio" class="button">SERGIO</label>
+            </div>
+            <div class="selectionGroupOption">
+              <input class="btn-switch" type="checkbox" id="lunesSaul" value="lunesSaul" onclick="cambiarColor(this.value)">
+              <label for="lunesSaul" class="lst-child button">SAÚL</label>
+            </div>
+          </div>
+        </div>
+        <div class="selectionGroup">
+          <h2 class="selectionGroupTitle">MARTES</h2>
+          <div class="selectionOptionContainer">
+            <div class="selectionGroupOption">
+              <input class="btn-switch" type="checkbox" id="martesManuel" value="martesManuel" onclick="cambiarColor(this.value)">
+              <label for="martesManuel" class="fst-child button">ISAAC</label>
+            </div>
+            <div class="selectionGroupOption">
+              <input class="btn-switch" type="checkbox" id="martesIsaac" value="martesIsaac" onclick="cambiarColor(this.value)">
+              <label for="martesIsaac" class="button">MANUEL</label>
+            </div>
+            <div class="selectionGroupOption">
+              <input class="btn-switch" type="checkbox" id="martesSergio" value="martesSergio" onclick="cambiarColor(this.value)">
+              <label for="martesSergio" class="button">SERGIO</label>
+            </div>
+            <div class="selectionGroupOption">
+              <input class="btn-switch" type="checkbox" id="martesSaul" value="martesSaul" onclick="cambiarColor(this.value)">
+              <label for="martesSaul" class="lst-child button">SAÚL</label>
+            </div>
+          </div>
+        </div>
+        <div class="selectionGroup">
+          <h2 class="selectionGroupTitle">MIÉRCOLES</h2>
+          <div class="selectionOptionContainer">
+            <div class="selectionGroupOption">
+              <input class="btn-switch" type="checkbox" id="miercolesManuel" value="miercolesManuel" onclick="cambiarColor(this.value)">
+              <label for="miercolesManuel" class="fst-child button">ISAAC</label>
+            </div>
+            <div class="selectionGroupOption">
+              <input class="btn-switch" type="checkbox" id="miercolesIsaac" value="miercolesIsaac" onclick="cambiarColor(this.value)">
+              <label for="miercolesIsaac" class="button">MANUEL</label>
+            </div>
+            <div class="selectionGroupOption">
+              <input class="btn-switch" type="checkbox" id="miercolesSergio" value="miercolesSergio" onclick="cambiarColor(this.value)">
+              <label for="miercolesSergio" class="button">SERGIO</label>
+            </div>
+            <div class="selectionGroupOption">
+              <input class="btn-switch" type="checkbox" id="miercolesSaul" value="miercolesSaul" onclick="cambiarColor(this.value)">
+              <label for="miercolesSaul" class="lst-child button">SAÚL</label>
+            </div>
+          </div>
+        </div>
+        <div class="selectionGroup">
+          <h2 class="selectionGroupTitle">JUEVES</h2>
+          <div class="selectionOptionContainer">
+            <div class="selectionGroupOption">
+              <input class="btn-switch" type="checkbox" id="juevesManuel" value="juevesManuel" onclick="cambiarColor(this.value)">
+              <label for="juevesManuel" class="fst-child button">ISAAC</label>
+            </div>
+            <div class="selectionGroupOption">
+              <input class="btn-switch" type="checkbox" id="juevesIsaac" value="juevesIsaac" onclick="cambiarColor(this.value)">
+              <label for="juevesIsaac" class="button">MANUEL</label>
+            </div>
+            <div class="selectionGroupOption">
+              <input class="btn-switch" type="checkbox" id="juevesSergio" value="juevesSergio" onclick="cambiarColor(this.value)">
+              <label for="juevesSergio" class="button">SERGIO</label>
+            </div>
+            <div class="selectionGroupOption">
+              <input class="btn-switch" type="checkbox" id="juevesSaul" value="juevesSaul" onclick="cambiarColor(this.value)">
+              <label for="juevesSaul" class="lst-child button">SAÚL</label>
+            </div>
+          </div>
+        </div>
+        <div class="selectionGroup">
+          <h2 class="selectionGroupTitle">VIERNES</h2>
+          <div class="selectionOptionContainer">
+            <div class="selectionGroupOption">
+              <input class="btn-switch" type="checkbox" id="viernesManuel" value="viernesManuel" onclick="cambiarColor(this.value)">
+              <label for="viernesManuel" class="fst-child button">ISAAC</label>
+            </div>
+            <div class="selectionGroupOption">
+              <input class="btn-switch" type="checkbox" id="viernesIsaac" value="viernesIsaac" onclick="cambiarColor(this.value)">
+              <label for="viernesIsaac" class="button">MANUEL</label>
+            </div>
+            <div class="selectionGroupOption">
+              <input class="btn-switch" type="checkbox" id="viernesSergio" value="viernesSergio" onclick="cambiarColor(this.value)">
+              <label for="viernesSergio" class="button">SERGIO</label>
+            </div>
+            <div class="selectionGroupOption">
+              <input class="btn-switch" type="checkbox" id="viernesSaul" value="viernesSaul" onclick="cambiarColor(this.value)">
+              <label for="viernesSaul" class="lst-child button">SAÚL</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="updateSection">
+        <input type="file" name="updateFile" id="updateFile">
+        <label for="updateFile">CARGAR ARCHIVO</label>
+      </div>
+    </div>
+
+    <div class="mapSection">
+      <div class="map"></div>
+    </div>
+  </div>
+  <footer>
+    <script src="script.js"></script>
+  </footer>
+</body>
+</html>

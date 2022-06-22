@@ -1,0 +1,78 @@
+/* General specs */
+*,html{
+  margin: 0;
+  font-size: 15px;
+}
+
+
+input[type='checkbox'],
+input[type='file']{
+  display: none;
+}
+
+
+/* Typography */
+body {
+  font-family: ubuntu;
+  font-weight: regular;
+}
+
+h2 {
+  font-size: 1.1em;
+  font-weight: 400;
+}
+
+/* Side Section */
+.sideSection {
+  width: 35%;
+  padding: 5em 1.5em 0em 1.5em;
+  border: solid 2px red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.selectionSection{
+  margin-bottom: 5em;
+}
+
+.selectionGroup{
+  margin-bottom: 1.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.selectionGroupTitle {
+  margin-bottom: .5em;
+}
+
+.selectionOptionContainer {
+  display: flex;
+}
+
+.button {
+  display: inline-block;
+  width: 6rem;
+  height: 2rem;
+  background: #20a65683;
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-right: solid 1px #20a656;
+}
+
+.fst-child {
+  border-radius: 1rem 0 0 1rem;
+}
+
+.lst-child {
+  border-radius: 0 1rem 1rem 0;
+}
+
+
+
+.btn-switch:checked ~ .button{
+  background: #20a656;
+}
