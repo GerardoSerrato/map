@@ -15,3 +15,10 @@ function cambiarColor(valueInput) {
 function llamadoAsi() {
   console.log(listActive);
 }
+
+var map = L.map('map').setView([19.41, -99.15], 11);
+
+var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '© OpenStreetMap'
+}).addTo(map);
