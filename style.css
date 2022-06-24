@@ -39,6 +39,7 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  
 }
 
 .selectionSection{
@@ -94,7 +95,7 @@ h2 {
 
 /* Button Update */
 
-.btnUpdate {
+.btnUpload {
   display: inline-flex;
   width: 12rem;
   height: 2rem;
@@ -105,8 +106,8 @@ h2 {
   color: white;
 }
 
-.btnUpdate:hover,
-.btnUpdate:focus {
+.btnUpload:hover,
+.btnUpload:focus {
   background: #20a656;
 }
 
