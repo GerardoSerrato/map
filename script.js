@@ -1,4 +1,5 @@
-colorsSelection = ['green', 'red', 'yellow', 'blue', 'pink', 'brown', 'purple', 'grey', 'white', 'orange']
+colorSelection = ['#000000', '#0000FF', '#008000', '#800080', '#FF0000', '#FF69B4',
+'#FFFACD', '#B22222', '#FF7F50', '#F0F8FF', '#32a840', '#8da832', '#32a6a8']
 
 
 var map = L.map('map').setView([19.41, -99.15], 11);
@@ -34,6 +35,10 @@ function nameCorrection(nameInput) {
   return myName
 }
 
+function random(min, max) {
+  return Math.floor((Math.random() * (max - min + 1)) + min);
+}
+
 function cambiarColor(valueInput) {
   var getInput = document.getElementById(valueInput);
   if (getInput.checked== true) {
@@ -61,7 +66,7 @@ function cambiarColor(valueInput) {
       points = turf.featureCollection(coordList);
       var hull = turf.convex(points)
       console.log(hull);
-      var polygon = L.polygon(hull.geometry.coordinates[0],{"color":"#ffb6c1"}).addTo(map);
+      var polygon = L.polygon(hull.geometry.coordinates[0],{"color":colorSelection[random(0,8)]}).addTo(map);
 
 
     };
