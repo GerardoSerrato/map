@@ -46,19 +46,22 @@ function cambiarColor(valueInput) {
       var intern = JSON.parse(content);
       var nameValue = nameCorrection(valueInput);
       var coordList = [];
-      var points
+      var points;
       for (let x=0; x < intern.features.length; x++){
-        var coordMod = []
+        var coordMod = [];
         var coordActual = intern.features[x].geometry.coordinates;
         var nameActual = intern.features[x].properties.name;
         if (nameActual.includes(nameValue[0]) && nameActual.includes(nameValue[1])){
-          coordMod= turf.point[coordActual[1],coordActual[0]]
+          coordMod= turf.point([coordActual[1],coordActual[0]]);
           coordList.push(coordMod);
         } else {
           continue
         }
       };
-      var polygon = L.polygon(coordList,{"color":"#ffb6c1"}).addTo(map);
+      points = turf.featureCollection(coordList);
+      var hull = turf.convex(points)
+      console.log(hull);
+      var polygon = L.polygon(hull.geometry.coordinates[0],{"color":"#ffb6c1"}).addTo(map);
 
 
     };
