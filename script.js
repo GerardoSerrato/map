@@ -72,9 +72,8 @@ function cambiarColor(valueInput) {
       feature = layer.feature = layer.feature || {};
       feature.type = feature.type || "Feature"; 
       var props = feature.properties = feature.properties || {};
-      props.name= nameValue[1];
-      props.day= nameValue[0];
       props.myId = valueInput;
+      polygon.bindPopup(nameValue[0] + ' ' + nameValue[1])
       polygon.addTo(group);
       console.log(group);
     };
