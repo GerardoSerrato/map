@@ -1,32 +1,5 @@
-function cambiarColor(valueInput) {
-  var getInput = document.getElementById(valueInput);
-  if (getInput.checked== true) {
-    console.log("Sí está activo");
-    console.log(valueInput);
-    var file_to_read = document.getElementById("uploadFile").files[0];
-    var fileread = new FileReader();
-    fileread.readAsText(file_to_read);
-    fileread.onload = function(e) {
-      var content = e.target.result;
-      var intern = JSON.parse(content);
-      var nameValue = nameCorrection(valueInput);
-      console.log(nameValue);
-      var coordList = []
-      for (let x=0; x < intern.features.length; x++){
-        var coordActual = intern.features[x].geometry.coordinates;
-        var nameActual = intern.features[x].properties.name;
-        if (nameActual.includes(nameValue[0]) && nameActual.includes(nameValue[1])){
-          coordList.push(coordActual);
-        } else {
-          continue
-        }
-      }
-      console.log(coordList);
-    };
-  }else {
-    console.log("No está activo, " + valueInput);
-  }
-}
+colorsSelection = ['green', 'red', 'yellow', 'blue', 'pink', 'brown', 'purple', 'grey', 'white', 'orange']
+
 
 var map = L.map('map').setView([19.41, -99.15], 11);
 
@@ -46,17 +19,77 @@ function nameCorrection(nameInput) {
     case 'Saul':
        myName[1] = 'Saúl';
        break
-    default:
-      break;
+  default:
+    break;
   }
   switch (myName[0]) {
     case 'miercoles':
-      myName[0] = 'Miércoles'
-      break;
-  
+    myName[0] = 'Miércoles'
+    break;
+    
     default:
       break;
-  }
+    }
   myName[0] = myName[0][0].toUpperCase() + myName[0].slice(1);
   return myName
 }
+
+function cambiarColor(valueInput) {
+  var getInput = document.getElementById(valueInput);
+  if (getInput.checked== true) {
+    console.log("Sí está activo");
+    var file_to_read = document.getElementById("uploadFile").files[0];
+    var fileread = new FileReader();
+    fileread.readAsText(file_to_read);
+    fileread.onload = function(e) {
+      var content = e.target.result;
+      var intern = JSON.parse(content);
+      var nameValue = nameCorrection(valueInput);
+      var coordList = [];
+      var points
+      for (let x=0; x < intern.features.length; x++){
+        var coordMod = []
+        var coordActual = intern.features[x].geometry.coordinates;
+        var nameActual = intern.features[x].properties.name;
+        if (nameActual.includes(nameValue[0]) && nameActual.includes(nameValue[1])){
+          coordMod= turf.point[coordActual[1],coordActual[0]]
+          coordList.push(coordMod);
+        } else {
+          continue
+        }
+      };
+      var polygon = L.polygon(coordList,{"color":"#ffb6c1"}).addTo(map);
+
+
+    };
+  }else {
+    console.log("No está activo, " + valueInput);
+  }
+}
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
