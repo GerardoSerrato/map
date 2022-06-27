@@ -1,5 +1,5 @@
 colorSelection = ['#000000', '#0000FF', '#008000', '#800080', '#FF0000', '#FF69B4',
-'#FFFACD', '#B22222', '#FF7F50', '#F0F8FF', '#32a840', '#8da832', '#32a6a8']
+'#B22222', '#FF7F50', '#F0F8FF', '#32a840', '#8da832', '#32a6a8']
 
 
 var map = L.map('map').setView([19.41, -99.15], 11);
@@ -12,6 +12,8 @@ var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 function uplFile() {
   document.getElementsByClassName("selectionSection")[0].style.display = 'block';
 }
+
+group = L.featureGroup().addTo(map);
 
 function nameCorrection(nameInput) {
   var myName = []
@@ -65,14 +67,24 @@ function cambiarColor(valueInput) {
       };
       points = turf.featureCollection(coordList);
       var hull = turf.convex(points)
-      console.log(hull);
-      var polygon = L.polygon(hull.geometry.coordinates[0],{"color":colorSelection[random(0,8)]}).addTo(map);
-
-
+      var polygon = L.polygon(hull.geometry.coordinates[0],{"color":colorSelection[random(0,7)]});
+      var layer = polygon;
+      feature = layer.feature = layer.feature || {};
+      feature.type = feature.type || "Feature"; 
+      var props = feature.properties = feature.properties || {};
+      props.name= nameValue[1];
+      props.day= nameValue[0];
+      props.myId = valueInput;
+      polygon.addTo(group);
+      console.log(group);
     };
   }else {
     console.log("No está activo, " + valueInput);
-  }
+    group.eachLayer(function(layer){
+      if (layer.feature.properties.myId === valueInput) {
+          group.removeLayer(layer);
+      }});
+    }
 }
 
 
