@@ -54,6 +54,7 @@ function cambiarColor(valueInput) {
       /*Se nombran variables locales*/
       var content = e.target.result;
       var intern = JSON.parse(content);
+      console.log(intern);
       var nameValue = nameCorrection(valueInput);
       var coordList = [];
       var points;
