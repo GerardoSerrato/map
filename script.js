@@ -54,7 +54,6 @@ function cambiarColor(valueInput) {
       /*Se nombran variables locales*/
       var content = e.target.result;
       var intern = JSON.parse(content);
-      console.log(intern);
       var nameValue = nameCorrection(valueInput);
       var coordList = [];
       var points;
@@ -76,6 +75,7 @@ function cambiarColor(valueInput) {
             continue
         }
       };
+      console.log(coordList);
       /*Se agregan detalles de grupo de marcadores*/
       feature = pointsTemp.feature = pointsTemp.feature || {};
       feature.type = feature.type || "Feature"; 
