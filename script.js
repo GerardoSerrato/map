@@ -44,7 +44,6 @@ function random(min, max) {
 function cambiarColor(valueInput) {
   var getInput = document.getElementById(valueInput);
   if (getInput.checked== true) {
-    console.log("Sí está activo");
     var file_to_read = document.getElementById("uploadFile").files[0];
     var fileread = new FileReader();
     fileread.readAsText(file_to_read);
@@ -75,16 +74,17 @@ function cambiarColor(valueInput) {
       props.myId = valueInput;
       polygon.bindPopup(nameValue[0] + ' ' + nameValue[1])
       polygon.addTo(group);
-      console.log(group);
+      org();
     };
   }else {
-    console.log("No está activo, " + valueInput);
     group.eachLayer(function(layer){
       if (layer.feature.properties.myId === valueInput) {
           group.removeLayer(layer);
       }});
     }
 }
+
+
 
 
   
