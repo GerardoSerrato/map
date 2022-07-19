@@ -85,7 +85,7 @@ function cambiarColor(valueInput) {
       pointsTemp.addTo(pointsGroup);
       /*Se calcula polígono con coordenadas*/
       points = turf.featureCollection(coordList);
-      var hull = turf.concave(points, {maxEdge: 3})
+      var hull = turf.concave(points, {maxEdge: 5})
       var polygon = L.polygon(hull.geometry.coordinates[0],{"color":colorSelection[random(0,7)]});
       /*Se agregan detalles del polígono*/
       var layer = polygon;
