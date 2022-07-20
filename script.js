@@ -22,15 +22,22 @@ function nameCorrection(nameInput) {
   switch (myName[1]) {
     case 'Saul':
       myName[1] = 'Saúl';
-      break
+      break;
+    case 'Uno':
+      myName[1] = '1';
+      break;
+    case 'Dos':
+      myName[1] = '2';
+      break;
     default:
       break;
     }
   switch (myName[0]) {
     case 'miercoles':
-      myName[0] = 'Miércoles'
+      myName[0] = 'Miércoles';
       break;
-      
+    case 'sabado':
+      myName[0] = 'Sábado';
     default:
       break;
     }
@@ -55,6 +62,7 @@ function cambiarColor(valueInput) {
       var content = e.target.result;
       var intern = JSON.parse(content);
       var nameValue = nameCorrection(valueInput);
+      console.log(nameValue);
       var coordList = [];
       var points;
       pointsTemp = L.featureGroup();
