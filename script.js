@@ -109,7 +109,6 @@ function cambiarColor(valueInput) {
     })
   }
 }
-  
   function uplFile() {
     document.getElementsByClassName("selectionSection")[0].style.display = 'block';
   }
