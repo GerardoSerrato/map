@@ -2,7 +2,7 @@ colorSelection = ['#000000', '#0000FF', '#008000', '#800080', '#FF0000', '#FF69B
 '#B22222', '#FF7F50', '#F0F8FF', '#32a840', '#8da832', '#32a6a8']
 
 
-var map = L.map('map').setView([19.41, -99.15], 11);
+var map = L.map('map').setView([19.3, -99.6], 12);
 
 var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19,
@@ -19,19 +19,6 @@ pointsGroup.bringToFront();
 function nameCorrection(nameInput) {
   var myName = []
   var myName = nameInput.split(/(?=[A-Z])/);
-  switch (myName[1]) {
-    case 'Saul':
-      myName[1] = 'Saúl';
-      break;
-    case 'Uno':
-      myName[1] = '1';
-      break;
-    case 'Dos':
-      myName[1] = '2';
-      break;
-    default:
-      break;
-    }
   switch (myName[0]) {
     case 'miercoles':
       myName[0] = 'Miércoles';
