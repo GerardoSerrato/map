@@ -2,7 +2,7 @@ colorSelection = ['#000000', '#0000FF', '#008000', '#800080', '#FF0000', '#FF69B
 '#B22222', '#FF7F50', '#F0F8FF', '#32a840', '#8da832', '#32a6a8']
 
 
-var map = L.map('map').setView([19.41, -99.15], 11);
+var map = L.map('map').setView([19.3, -99.6], 12);
 
 var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19,
@@ -19,19 +19,6 @@ pointsGroup.bringToFront();
 function nameCorrection(nameInput) {
   var myName = []
   var myName = nameInput.split(/(?=[A-Z])/);
-  switch (myName[1]) {
-    case 'Saul':
-      myName[1] = 'Saúl';
-      break;
-    case 'Uno':
-      myName[1] = '1';
-      break;
-    case 'Dos':
-      myName[1] = '2';
-      break;
-    default:
-      break;
-    }
   switch (myName[0]) {
     case 'miercoles':
       myName[0] = 'Miércoles';
@@ -62,7 +49,6 @@ function cambiarColor(valueInput) {
       var content = e.target.result;
       var intern = JSON.parse(content);
       var nameValue = nameCorrection(valueInput);
-      console.log(nameValue);
       var coordList = [];
       var points;
       pointsTemp = L.featureGroup();
@@ -75,6 +61,7 @@ function cambiarColor(valueInput) {
         /*Condición de concordancia entre nombres*/
         if (nameActual.includes(nameValue[0]) && nameActual.includes(nameValue[1])){
           /*Se agregan coordenadas a lista*/
+          console.log(nameActual);
           coordMod= turf.point([coordActual[1],coordActual[0]]);
           coordList.push(coordMod);
           /*Se crea marcador de lugar dentro de grupo temporal*/
@@ -83,7 +70,6 @@ function cambiarColor(valueInput) {
             continue
         }
       };
-      console.log(coordList);
       /*Se agregan detalles de grupo de marcadores*/
       feature = pointsTemp.feature = pointsTemp.feature || {};
       feature.type = feature.type || "Feature"; 
