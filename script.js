@@ -2,7 +2,7 @@ colorSelection = ['#000000', '#0000FF', '#008000', '#800080', '#FF0000', '#FF69B
 '#B22222', '#FF7F50', '#F0F8FF', '#32a840', '#8da832', '#32a6a8']
 
 
-var map = L.map('map').setView([19.3, -99.6], 12);
+var map = L.map('map').setView([19.41, -99.15], 11);
 
 var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19,
@@ -19,12 +19,18 @@ pointsGroup.bringToFront();
 function nameCorrection(nameInput) {
   var myName = []
   var myName = nameInput.split(/(?=[A-Z])/);
+  switch (myName[1]) {
+    case 'Saul':
+      myName[1] = 'Saúl';
+      break
+    default:
+      break;
+    }
   switch (myName[0]) {
     case 'miercoles':
-      myName[0] = 'Miércoles';
+      myName[0] = 'Miércoles'
       break;
-    case 'sabado':
-      myName[0] = 'Sábado';
+      
     default:
       break;
     }
@@ -79,7 +85,7 @@ function cambiarColor(valueInput) {
       pointsTemp.addTo(pointsGroup);
       /*Se calcula polígono con coordenadas*/
       points = turf.featureCollection(coordList);
-      var hull = turf.concave(points, {maxEdge: 5})
+      var hull = turf.concave(points, {maxEdge: 3})
       var polygon = L.polygon(hull.geometry.coordinates[0],{"color":colorSelection[random(0,7)]});
       /*Se agregan detalles del polígono*/
       var layer = polygon;
