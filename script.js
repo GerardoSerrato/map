@@ -23,6 +23,12 @@ function nameCorrection(nameInput) {
     case 'Saul':
       myName[1] = 'Saúl';
       break
+    case 'Uno':
+      myName[1] = '1';
+      break
+      case 'Dos':
+        myName[1] = '2';
+        break
     default:
       break;
     }
@@ -30,7 +36,10 @@ function nameCorrection(nameInput) {
     case 'miercoles':
       myName[0] = 'Miércoles'
       break;
-      
+    case 'sabado':
+      myName[0] = 'Sábado'
+      break;
+
     default:
       break;
     }
@@ -55,6 +64,7 @@ function cambiarColor(valueInput) {
       var content = e.target.result;
       var intern = JSON.parse(content);
       var nameValue = nameCorrection(valueInput);
+      console.log(nameValue);
       var coordList = [];
       var points;
       pointsTemp = L.featureGroup();
@@ -64,6 +74,7 @@ function cambiarColor(valueInput) {
         var coordMod = [];
         var coordActual = intern.features[x].geometry.coordinates;
         var nameActual = intern.features[x].properties.name;
+        // console.log(nameActual);
         /*Condición de concordancia entre nombres*/
         if (nameActual.includes(nameValue[0]) && nameActual.includes(nameValue[1])){
           /*Se agregan coordenadas a lista*/
