@@ -67,6 +67,7 @@ function cambiarColor(valueInput) {
       console.log(nameValue);
       var coordList = [];
       var points;
+      var rutaJunto = [];
       pointsTemp = L.featureGroup();
       /*Se recorre array para encontrar coincidencias*/
       for (let x=0; x < intern.features.length; x++){
@@ -74,11 +75,10 @@ function cambiarColor(valueInput) {
         var coordMod = [];
         var coordActual = intern.features[x].geometry.coordinates;
         var nameActual = intern.features[x].properties.name;
-        // console.log(nameActual);
         /*Condición de concordancia entre nombres*/
         if (nameActual.includes(nameValue[0]) && nameActual.includes(nameValue[1])){
           /*Se agregan coordenadas a lista*/
-          console.log(nameActual);
+          rutaJunto.push(nameActual);
           coordMod= turf.point([coordActual[1],coordActual[0]]);
           coordList.push(coordMod);
           /*Se crea marcador de lugar dentro de grupo temporal*/
@@ -87,6 +87,7 @@ function cambiarColor(valueInput) {
             continue
         }
       };
+      console.log(rutaJunto);
       /*Se agregan detalles de grupo de marcadores*/
       feature = pointsTemp.feature = pointsTemp.feature || {};
       feature.type = feature.type || "Feature"; 
