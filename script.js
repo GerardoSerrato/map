@@ -46,7 +46,6 @@ function nameCorrection(nameInput) {
   myName[0] = myName[0][0].toUpperCase() + myName[0].slice(1);
   return myName
 }
-    
 
 function random(min, max) {
   return Math.floor((Math.random() * (max - min + 1)) + min);
@@ -67,6 +66,7 @@ function cambiarColor(valueInput) {
       console.log(nameValue);
       var coordList = [];
       var points;
+      var rutaCompleta = [];
       var rutaJunto = [];
       pointsTemp = L.featureGroup();
       /*Se recorre array para encontrar coincidencias*/
@@ -75,6 +75,7 @@ function cambiarColor(valueInput) {
         var coordMod = [];
         var coordActual = intern.features[x].geometry.coordinates;
         var nameActual = intern.features[x].properties.name;
+        rutaCompleta.push(nameActual);
         /*Condición de concordancia entre nombres*/
         if (nameActual.includes(nameValue[0]) && nameActual.includes(nameValue[1])){
           /*Se agregan coordenadas a lista*/
@@ -87,7 +88,7 @@ function cambiarColor(valueInput) {
             continue
         }
       };
-      console.log(rutaJunto);
+      console.log(rutaCompleta);
       /*Se agregan detalles de grupo de marcadores*/
       feature = pointsTemp.feature = pointsTemp.feature || {};
       feature.type = feature.type || "Feature"; 
