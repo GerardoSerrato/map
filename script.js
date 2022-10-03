@@ -77,7 +77,7 @@ function cambiarColor(valueInput) {
         /*Condición de concordancia entre nombres*/
         if (nameActual.includes(nameValue[0]) && nameActual.includes(nameValue[1])){
           /*Se agregan coordenadas a lista*/
-          rutaJunto.push(nameActual);
+          console.log(nameActual);
           coordMod= turf.point([coordActual[1],coordActual[0]]);
           coordList.push(coordMod);
           /*Se crea marcador de lugar dentro de grupo temporal*/
@@ -86,7 +86,6 @@ function cambiarColor(valueInput) {
             continue
         }
       };
-      console.log(rutaJunto);
       /*Se agregan detalles de grupo de marcadores*/
       feature = pointsTemp.feature = pointsTemp.feature || {};
       feature.type = feature.type || "Feature"; 
