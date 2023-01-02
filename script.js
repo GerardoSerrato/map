@@ -16,35 +16,18 @@ pointsGroup = L.featureGroup().addTo(map);
 
 pointsGroup.bringToFront();
 
-function nameCorrection(nameInput) {
+function nameObject(nameInput) {
   var myName = []
-  var myName = nameInput.split(/(?=[A-Z])/);
-  switch (myName[1]) {
-    case 'Saul':
-      myName[1] = 'Saúl';
-      break
-    case 'Uno':
-      myName[1] = '1';
-      break
-      case 'Dos':
-        myName[1] = '2';
-        break
-    default:
-      break;
-    }
-  switch (myName[0]) {
-    case 'miercoles':
-      myName[0] = 'Miércoles'
-      break;
-    case 'sabado':
-      myName[0] = 'Sábado'
-      break;
+  var myName = nameInput.split(' ')
+  return myName[myName.length-1]
+}
 
-    default:
-      break;
-    }
-  myName[0] = myName[0][0].toUpperCase() + myName[0].slice(1);
-  return myName
+function nameValidation(nameInput) {
+  var myName = []
+  var myName = nameInput.split(' ')
+  var numbers = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20']
+  var nameTemp = myName[myName.length-1]
+  return nameTemp in numbers
 }
 
 function random(min, max) {
@@ -62,11 +45,8 @@ function cambiarColor(valueInput) {
       /*Se nombran variables locales*/
       var content = e.target.result;
       var intern = JSON.parse(content);
-      var nameValue = nameCorrection(valueInput);
-      console.log(nameValue);
       var coordList = [];
       var points;
-      var rutaJunto = [];
       pointsTemp = L.featureGroup();
       /*Se recorre array para encontrar coincidencias*/
       for (let x=0; x < intern.features.length; x++){
@@ -74,8 +54,9 @@ function cambiarColor(valueInput) {
         var coordMod = [];
         var coordActual = intern.features[x].geometry.coordinates;
         var nameActual = intern.features[x].properties.name;
+        var nameFinal = nameObject(nameActual);
         /*Condición de concordancia entre nombres*/
-        if (nameActual.includes(nameValue[0]) && nameActual.includes(nameValue[1])){
+        if (valueInput == nameFinal){
           /*Se agregan coordenadas a lista*/
           console.log(nameActual);
           coordMod= turf.point([coordActual[1],coordActual[0]]);
@@ -103,7 +84,6 @@ function cambiarColor(valueInput) {
       feature.type = feature.type || "Feature"; 
       var props = feature.properties = feature.properties || {};
       props.myId = valueInput;
-      polygon.bindPopup(nameValue[0] + ' ' + nameValue[1])
       /*Se agreaga polígono a grupo*/
       polygon.addTo(group);
   };
@@ -119,7 +99,54 @@ function cambiarColor(valueInput) {
     })
   }
 }
-  function uplFile() {
-    document.getElementsByClassName("selectionSection")[0].style.display = 'block';
+function uplFile() {
+  document.getElementsByClassName("selectionSection")[0].style.display = 'block';
+}
+
+function sinRuta(valueInput) {
+  var getInput = document.getElementById(valueInput);
+  if (getInput.checked== true) {
+    /*Lectura de documento cargado*/
+    var file_to_read = document.getElementById("uploadFile").files[0];
+    var fileread = new FileReader();
+    fileread.readAsText(file_to_read);
+    fileread.onload = function(e) {
+      /*Se nombran variables locales*/
+      var content = e.target.result;
+      var intern = JSON.parse(content);
+      var coordList = [];
+      pointsTemp = L.featureGroup();
+      /*Se recorre array para encontrar coincidencias*/
+      for (let x=0; x < intern.features.length; x++){
+        /*Reseteo de variables*/
+        var coordMod = [];
+        var coordActual = intern.features[x].geometry.coordinates;
+        var nameActual = intern.features[x].properties.name;
+        /*Condición de concordancia entre nombres*/
+        if (nameValidation(nameActual) === false){
+          /*Se agregan coordenadas a lista*/
+          coordMod= turf.point([coordActual[1],coordActual[0]]);
+          coordList.push(coordMod);
+          /*Se crea marcador de lugar dentro de grupo temporal*/
+          L.marker([coordActual[1],coordActual[0]], {title: nameActual}).addTo(pointsTemp)
+        } else {
+            continue
+        }
+      };
+      /*Se agregan detalles de grupo de marcadores*/
+      feature = pointsTemp.feature = pointsTemp.feature || {};
+      feature.type = feature.type || "Feature"; 
+      var props = feature.properties = feature.properties || {};
+      props.myId = valueInput;
+      /*Se agrega grupo de puntos temporal a grupo general de puntos*/
+      pointsTemp.addTo(pointsGroup);
+  };
+  }else {
+    pointsGroup.eachLayer(function(layer) {
+      if (layer.feature.properties.myId === valueInput) {
+        pointsGroup.removeLayer(layer);
+      }
+    })
   }
+}
 // Final
