@@ -24,7 +24,7 @@ function nameObject(nameInput) {
 
 function nameValidation(nameInput) {
   var myName = []
-  var myName = nameInput.split(' ')
+  var myName = nameInput.split('')
   var numbers = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20']
   var nameTemp = myName[myName.length-1]
   return nameTemp in numbers
@@ -58,7 +58,6 @@ function cambiarColor(valueInput) {
         /*Condición de concordancia entre nombres*/
         if (valueInput == nameFinal){
           /*Se agregan coordenadas a lista*/
-          console.log(nameActual);
           coordMod= turf.point([coordActual[1],coordActual[0]]);
           coordList.push(coordMod);
           /*Se crea marcador de lugar dentro de grupo temporal*/
@@ -67,6 +66,7 @@ function cambiarColor(valueInput) {
             continue
         }
       };
+      console.log(coordList);
       /*Se agregan detalles de grupo de marcadores*/
       feature = pointsTemp.feature = pointsTemp.feature || {};
       feature.type = feature.type || "Feature"; 
